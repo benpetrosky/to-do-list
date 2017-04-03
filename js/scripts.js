@@ -24,14 +24,19 @@ $(function(){
     else
     {
       var newTask = new Todo(taskInput, deadlineInput);
+      var chore = new Date().getMilliseconds();
+      console.log(chore);
 
-      $("#result-to-do-list").prepend("<li><span class='todo-item'>" + newTask.todoString() + "</span></li>");
+      $("#result-to-do-list").prepend("<li><span id='" + chore + "'>" + newTask.todoString() + "</span></li>");
+      console.log(newTask.todoString());
 
       $("#task").val("");
       $("#deadline").val("");
 
-      $(".todo-item").click(function() {
+
+      $('#' + chore).click(function() {
         this.remove();
+        $('#' + chore).val("");
         $("#accomplished").append("<li><span class='accomplished-item'>" + newTask.accomplishedString() + "</span></li>")
       });
     }
